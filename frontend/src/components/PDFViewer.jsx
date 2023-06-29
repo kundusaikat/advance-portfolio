@@ -1,44 +1,20 @@
-import React, { useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
-import 'react-pdf/dist/esm/Page/AnnotationLayer.css'; // Optional: For annotation layer styling
+import React from "react";
+import pdfFile from "../assets/pdf/SaikatKunduResume.pdf";
 
-// Set the worker path for PDF.js
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
-const PDFViewer = ({ pdfUrl }) => {
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
-  };
-
-  const handlePreviousPage = () => {
-    setPageNumber((prevPageNumber) => prevPageNumber - 1);
-  };
-
-  const handleNextPage = () => {
-    setPageNumber((prevPageNumber) => prevPageNumber + 1);
-  };
+export const PDFViewer = () => {
+  
 
   return (
-    <div>
-      <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
-      </Document>
-      <div>
-        <p>
-          Page {pageNumber} of {numPages}
-        </p>
-        <button disabled={pageNumber <= 1} onClick={handlePreviousPage}>
-          Previous Page
-        </button>
-        <button disabled={pageNumber >= numPages} onClick={handleNextPage}>
-          Next Page
-        </button>
-      </div>
+    <div className="w-full aspect-w-16 aspect-h-9 flex flex-col justify-center items-center">
+      <iframe src={pdfFile} title="PDF Viewer" className=" max-w-3xl aspect-[50/74] " style={{width:"100%"}} fitToWidth allowFullScreen />
+      <p className="text-center">
+        If you cannot view the PDF, you can{" "}
+        <a href={pdfFile} target="_blank" rel="noopener noreferrer" className="text-sky-400 underline underline-offset-2 ">
+          click here to download the PDF file
+        </a>
+        .
+      </p>
+     
     </div>
   );
 };
-
-export default PDFViewer;

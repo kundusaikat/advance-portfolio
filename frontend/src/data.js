@@ -1,3 +1,17 @@
+import { BsFillPersonFill } from "react-icons/bs";
+import { HiUserGroup } from "react-icons/hi";
+import { MdAssignment } from "react-icons/md";
+import { SiFreelancer } from "react-icons/si";
+import DemoImage from "./assets/images/demo.jpg";
+
+import {
+  image10001,
+  image10002,
+  image10003,
+  image10004,
+  image10005,
+} from "./assets/images/projects/advance-portfolio/index";
+
 export const ImageURL = {
   front: {
     big: "https://firebasestorage.googleapis.com/v0/b/portfolio-e6455.appspot.com/o/wallpapers%2Ffront%2Fblackhole_big.jpg?alt=media&token=14065134-4b4c-4729-ac08-8b050f0324fc",
@@ -213,42 +227,149 @@ export const skillList = [
 export const docsDataList = [
   {
     title: "Programming Language",
-    url:"/docs/programming-language",
+    url: "/docs/programming-language",
     subList: [
       {
         title: "JavaScript",
-        url:"/docs/programming-language/java-script",
+        url: "/docs/programming-language/java-script",
         subList: [
           {
             title: "Array",
-            url:"/docs/programming-language/array",
+            url: "/docs/programming-language/array",
           },
           {
             title: "String",
-            url:"/docs/programming-language/string",
+            url: "/docs/programming-language/string",
           },
         ],
       },
     ],
   },
   {
-    title:"Front End Development",
-    url:"/docs/front-end-development",
+    title: "Front End Development",
+    url: "/docs/front-end-development",
     subList: [
       {
         title: "React.JS",
-        url:"/docs/front-end-development/react-js",
+        url: "/docs/front-end-development/react-js",
         subList: [
           {
             title: "useState",
-            url:"/docs/front-end-development/react-js/use-state",
+            url: "/docs/front-end-development/react-js/use-state",
           },
           {
             title: "useEffect",
-            url:"/docs/front-end-development/react-js/use-effect",
+            url: "/docs/front-end-development/react-js/use-effect",
           },
         ],
       },
     ],
-  }
+  },
+];
+
+export const projectsDataList = [
+  {
+    name: "Self Project",
+    logo: <BsFillPersonFill />,
+    images: [
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+    ],
+    subList: [
+      {
+        name: "Advance Portfolio Project",
+        previewImages: [
+          image10001,
+          image10002,
+          image10003,
+          image10004,
+          image10005,
+        ],
+        githubFrontEndURL:
+          "https://github.com/kundusaikat/advance-portfolio/tree/master/frontend",
+        githubBackendURL:
+          "https://github.com/kundusaikat/advance-portfolio/tree/master/backend",
+        deploymentURL: "https://saikatkundu.online/",
+      },
+    ],
+  },
+  {
+    name: "Group Project",
+    logo: <HiUserGroup />,
+    images: [
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+    ],
+    subList: [
+      {
+        name: "",
+        previewURL: [],
+        githubFrontEndURL: "",
+        githubBackendURL: "",
+        deploymentURL: "",
+      },
+    ],
+  },
+  {
+    name: "Assigned Project",
+    logo: <MdAssignment />,
+    images: [
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+    ],
+    subList: [
+      {
+        name: "",
+        previewURL: [],
+        githubFrontEndURL: "",
+        githubBackendURL: "",
+        deploymentURL: "",
+      },
+    ],
+  },
+  {
+    name: "Freelance Demo Project",
+    logo: <SiFreelancer />,
+    images: [
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+      DemoImage,
+    ],
+    subList: [
+      {
+        name: "",
+        previewURL: [],
+        githubFrontEndURL: "",
+        githubBackendURL: "",
+        deploymentURL: "",
+      },
+    ],
+  },
 ];

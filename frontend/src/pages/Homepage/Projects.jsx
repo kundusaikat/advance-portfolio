@@ -1,56 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { projectsDataList } from "../../data";
+import { SlidingImage } from "../../components/SlidingImage";
 
 export const Projects = () => {
-  const projectsDataList = [
-    {
-      name: "Self Project",
-      images: [
-        {
-          url: "https://drive.google.com/file/d/1J1INtn0uY59_CbNdsSIvEKsfv35q_uYO/view?usp=sharing",
-        },
-        {
-          url: "https://drive.google.com/file/d/1J1INtn0uY59_CbNdsSIvEKsfv35q_uYO/view?usp=sharing",
-        },
-        // ... add more image objects here
-      ],
-      subList: [
-        {
-          name: "",
-          previewURL: [],
-          githubFrontEndURL: "",
-          githubBackendURL: "",
-          deploymentURL: "",
-        },
-      ],
-    },
-    // ... add more projects here
-  ];
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const [showProjectDetails, setShowProjectDetails] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleProjectHover = (projectName) => {
+    setHoveredProject(projectName);
+  };
+
+  const handleProjectLeave = () => {
+    setHoveredProject(null);
+  };
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+
+    setShowProjectDetails(true);
+  };
+
+  const closeProjectDetails = () => {
+    setShowProjectDetails(false);
+    setSelectedProject(null);
+  };
 
   return (
     <div className="bg-background1 text-center text-text1 p-10">
-      <p className="text-3xl font-serif font-semibold">Projects</p>
+      <p className="text-3xl font-serif font-semibold mb-10">Projects</p>
 
-      <div>
+      <div className="flex flex-wrap gap-5 justify-center">
         {projectsDataList.map((project) => (
-          <div key={project.name}>
-            {project.images.map((image) => (
-              // <iframe
-              //   key={image.url}
-              //   title={project.name}
-              //   src={image.url}
-              //   width="640"
-              //   height="480"
-              //   frameBorder="0"
-              //   allow="autoplay"
-              //   scrolling="no"
-              //   className="border mt-2"
-              // ></iframe>
+          <div
+            key={project.name}
+            className={`w-[95%] md:w-[45%] lg:w-[20%] relative bg-white text-black rounded-xl outline-black outline-double outline-4 -outline-offset-4 transition duration-300 ${
+              hoveredProject === project.name
+                ? "brightness-75"
+                : "brightness-100"
+            }`}
+            onMouseEnter={() => handleProjectHover(project.name)}
+            onMouseLeave={handleProjectLeave}
+            onClick={() => handleProjectClick(project)}
+          >
+            <div className="flex flex-wrap justify-center items-center w-full gap-2 p-2">
+              {project.images.map((image, index) => (
+                <img key={index} src={image} alt="" className="w-[30%]" />
+              ))}
+            </div>
+            <div className="flex justify-center items-center gap-2 py-2 text-lg font-semibold font-mono">
+              {project.logo} {project.name}
+            </div>
 
-              <img src={"https://firebasestorage.googleapis.com/v0/b/portfolio-e6455.appspot.com/o/Self%20Project%2FScreenshot%20(307).png?alt=media&token=2d6b5534-12b6-4f0f-8128-0f867226cf94"} alt="" className="w-30 h-40"/>
-            ))}
+            {hoveredProject === project.name && (
+              <div className="absolute top-0 left-0 flex w-full h-full justify-center items-center backdrop-brightness-75">
+                <div className="bg-black text-white rounded-lg p-2 cursor-pointer">
+                  Click to see more details...
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
+
+      {showProjectDetails && selectedProject && (
+        <div
+          className="fixed top-0 left-0 h-screen w-screen flex justify-center items-center z-[52]"
+          // onClick={closeProjectDetails}
+        >
+          <div
+            className="backdrop-brightness-[0.2] w-full h-full  "
+            // onClick={(e) => e.stopPropagation()}
+          >
+            <div className="">
+              <p className="text-2xl py-10 font-mono font-semibold">
+                {selectedProject.name}
+              </p>
+
+              {selectedProject.subList.map((el) => (
+                <div>
+                  <SlidingImage data={el.previewImages} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
